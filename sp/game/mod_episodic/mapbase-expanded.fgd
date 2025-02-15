@@ -2,31 +2,47 @@
 //
 // Purpose: Half-Life 2 game definition file (.fgd) 
 //
-// This is the Mapbase version of the Half-Life 2 FGD.
-// Much of this content only works in Mapbase.
+// This is the Mapbase expanded version of the Half-Life 2 FGD.
+// Requires Vizzys Icons.
 //
 //=============================================================================
 
-@include "halflife2.fgd"
+@include "halflife2_vizzys.fgd"
 
-//====== Copyright � 1996-2005, Valve Corporation, All rights reserved. =======
-//
-// Purpose: Half-Life 2 game definition file (.fgd) 
-//
-// This is the Mapbase version of the Half-Life 2 FGD.
-// Much of this content only works in Mapbase.
-//
-//=============================================================================
+@NPCClass base(BaseNPC) studio("models/npcs/bullsquid.mdl") = npc_bullsquid : "Bullsquid" []
 
-@include "halflife2.fgd"
-
-@NPCClass base(BaseNPC) studio("models/bullsquid.mdl") = npc_bullsquid : "Bullsquid" []
-
-@NPCClass base(BaseNPC) studio("models/houndeye.mdl") = npc_houndeye : "Houndeye" 
+@NPCClass base(BaseNPC) studio("models/npcs/houndeye.mdl") = npc_houndeye : "Houndeye" 
 [
 	netname(string) : "Squad Name"
 	spawnflags(Flags) =
 	[
 		32 : "SquadLeader" : 0
 	]
+]
+
+@NPCClass base(BaseNPC) studio("models/npcs/cockroach.mdl") = npc_cockroach : "Cockroach" []
+
+@NPCClass base(BaseNPC) studio("models/Stalker.mdl") = npc_stalker : "Stalker"
+[
+	BeamPower(choices) : "Beam Power" : "Low" =
+	[
+		0 : "Low (Red, 1 damage)"
+		1 : "Medium (Orange, 3 damage)"
+		2 : "High (Yellow, 10 damage)"
+	]
+	
+	Aggression(choices) : "Start Aggressive" : 0 : "Controls whether this stalker starts aggressive to the player and their allies without having to be provoked first." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	
+	Bleed(choices) : "Bleed" : 1 : "Allows this stalker to bleed upon taking bleedable damage. They bleed saline." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	input TurnAggressive(void) : "Makes the stalker aggressive to the player and allies." // Mapbase expanded
+	input TurnNonAggressive(void) : "Makes the stalker non-agressive to the player and allies, even if already provoked." // Mapbase expanded
 ]

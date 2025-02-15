@@ -116,6 +116,9 @@ public:
 	void			StartAttackBeam();
 	void			UpdateAttackBeam();
 
+	void			InputTurnAggressive(inputdata_t& inputdata);
+	void			InputTurnNonAggressive(inputdata_t& inputdata);
+
 	CNPC_Stalker(void);
 
 	DECLARE_DATADESC();

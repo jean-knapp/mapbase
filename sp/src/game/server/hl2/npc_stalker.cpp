@@ -136,6 +136,9 @@ BEGIN_DATADESC( CNPC_Stalker )
 #endif
 	DEFINE_FIELD( m_flNextScreamTime, FIELD_TIME ),
 
+	DEFINE_INPUTFUNC(FIELD_VOID, "TurnAggressive", InputTurnAggressive),
+	DEFINE_INPUTFUNC(FIELD_VOID, "TurnNonAggressive", InputTurnNonAggressive),
+
 	// Function Pointers
 	DEFINE_THINKFUNC( StalkerThink ),
 
@@ -401,6 +404,24 @@ void CNPC_Stalker::Event_Killed( const CTakeDamageInfo &info )
 
 	KillAttackBeam();
 	BaseClass::Event_Killed( info );
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Makes the stalker aggressive to the player and allies.
+// Input  : &inputdata - 
+//-----------------------------------------------------------------------------
+void CNPC_Stalker::InputTurnAggressive(inputdata_t& inputdata)
+{
+	this->m_iPlayerAggression = STALKER_PLAYER_AGGRESSION;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Makes the stalker non-agressive to the player and allies, even if already provoked.
+// Input  : &inputdata - 
+//-----------------------------------------------------------------------------
+void CNPC_Stalker::InputTurnNonAggressive(inputdata_t& inputdata)
+{
+	this->m_iPlayerAggression = 0;
 }
 
 #ifdef MAPBASE
